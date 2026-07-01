@@ -10,19 +10,22 @@ export const CONFIG = {
   // ---------- Pasangan ----------
   couple: {
     bride: {
-      fullName: "Aisyah Putri Rahmadani",
-      nickName: "Aisyah",
-      parents: "Putri dari Bpk. Ahmad Fauzi & Ibu Siti Aminah",
+      fullName: "Inas Rasyidah",
+      nickName: "Inas",
+      parents: "Putri dari Bpk. Gigih Priyandoko & Ibu Amik Purbowati",
       instagram: "", // opsional, contoh: "https://instagram.com/username"
+      // Ilustrasi/foto PNG (transparan lebih bagus). Letakkan file di assets/img/
+      image: "assets/img/bride.png",
     },
     groom: {
-      fullName: "Muhammad Rizky Pratama",
-      nickName: "Rizky",
-      parents: "Putra dari Bpk. Budi Santoso & Ibu Dewi Lestari",
+      fullName: "Ahmad Naufal Romiz",
+      nickName: "Naufal",
+      parents: "Putra dari Bpk. Ach. Sjamsul Djihat & Ibu Umi Kulsum",
       instagram: "",
+      image: "assets/img/groom.png",
     },
     // Nama gabungan di hero & footer
-    hashtag: "#RizkyAisyahMenikah",
+    hashtag: "#InasNaufalMenikah",
   },
 
   // ---------- Tanggal utama (dipakai countdown & kalender) ----------

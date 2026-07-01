@@ -48,6 +48,10 @@
         <path d="M20 40 Q20 22 38 22 Q30 30 34 38 Q26 34 20 40 Z" stroke-width="0.9" fill="none" />
         <circle cx="10" cy="10" r="2.4" />
       </symbol>
+      <!-- Clip berbentuk lengkung mihrab untuk foto/ilustrasi mempelai -->
+      <clipPath id="arch-clip" clipPathUnits="objectBoundingBox">
+        <path d="M0.082 0.953 V0.373 Q0.082 0.173 0.309 0.113 Q0.445 0.08 0.5 0.02 Q0.555 0.08 0.691 0.113 Q0.918 0.173 0.918 0.373 V0.953 Z" />
+      </clipPath>
       <!-- Drifting leaf (particles) -->
       <symbol id="orn-leaf" viewBox="0 0 24 24">
         <path d="M12 2 Q20 8 18 16 Q16 22 12 22 Q8 22 6 16 Q4 8 12 2 Z M12 5 V19" fill="none" stroke-width="1.2" />
@@ -143,31 +147,16 @@
         <!-- Bride -->
         <article class="couple__card" data-reveal="fade">
           <div class="arch-frame">
-            <svg class="couple__art figure-float" viewBox="0 0 220 300" role="img" aria-label="Ilustrasi mempelai wanita">
-              <path class="arch-frame__line ornament-draw-path" d="M18 286 V112 Q18 52 68 34 Q98 24 110 6 Q122 24 152 34 Q202 52 202 112 V286"
+            <svg class="arch-frame__outline" viewBox="0 0 220 300" aria-hidden="true">
+              <path class="ornament-draw-path" d="M18 286 V112 Q18 52 68 34 Q98 24 110 6 Q122 24 152 34 Q202 52 202 112 V286"
                     fill="none" stroke="var(--gold)" stroke-width="2"/>
               <path d="M28 286 V116 Q28 60 74 42 Q102 32 110 18 Q118 32 146 42 Q192 60 192 116 V286"
                     fill="none" stroke="var(--gold)" stroke-width="0.8" opacity="0.6"/>
-              <g class="figure">
-                <!-- gown -->
-                <g class="fabric-sway">
-                  <path d="M58 288 Q62 218 84 196 L136 196 Q158 218 162 288 Z" fill="var(--emerald-light)"/>
-                  <path d="M58 288 Q62 218 84 196 L96 196 Q76 224 72 288 Z" fill="var(--emerald)" opacity="0.5"/>
-                  <path d="M60 280 Q110 270 160 280" fill="none" stroke="var(--gold)" stroke-width="1.6"/>
-                </g>
-                <!-- hijab -->
-                <path d="M110 84 Q64 92 60 148 Q57 190 84 202 L136 202 Q163 190 160 148 Q156 92 110 84 Z" fill="var(--champagne)"/>
-                <path d="M110 84 Q64 92 60 148 Q58 178 74 194 Q66 154 78 126 Q88 100 110 96 Z" fill="var(--champagne-dark)" opacity="0.55"/>
-                <!-- face (faceless, tasteful) -->
-                <ellipse cx="110" cy="138" rx="21" ry="25" fill="var(--skin)"/>
-                <path d="M89 130 Q94 106 110 104 Q126 106 131 130 Q124 118 110 118 Q96 118 89 130 Z" fill="var(--champagne)"/>
-                <!-- gold floral accent on hijab -->
-                <g fill="none" stroke="var(--gold)" stroke-width="1.1">
-                  <circle cx="83" cy="122" r="3"/>
-                  <path d="M83 116 v-4 M83 128 v4 M77 122 h-4 M89 122 h4"/>
-                </g>
-              </g>
             </svg>
+            <div class="arch-frame__media figure-float">
+              <img class="arch-frame__img" id="bride-img" alt="" decoding="async" />
+              <span class="arch-frame__fallback" id="bride-fallback" hidden></span>
+            </div>
           </div>
           <h3 class="couple__name" id="bride-name"></h3>
           <p class="couple__parents" id="bride-parents"></p>
@@ -178,32 +167,16 @@
         <!-- Groom -->
         <article class="couple__card" data-reveal="fade">
           <div class="arch-frame">
-            <svg class="couple__art figure-float figure-float--alt" viewBox="0 0 220 300" role="img" aria-label="Ilustrasi mempelai pria">
-              <path class="arch-frame__line ornament-draw-path" d="M18 286 V112 Q18 52 68 34 Q98 24 110 6 Q122 24 152 34 Q202 52 202 112 V286"
+            <svg class="arch-frame__outline" viewBox="0 0 220 300" aria-hidden="true">
+              <path class="ornament-draw-path" d="M18 286 V112 Q18 52 68 34 Q98 24 110 6 Q122 24 152 34 Q202 52 202 112 V286"
                     fill="none" stroke="var(--gold)" stroke-width="2"/>
               <path d="M28 286 V116 Q28 60 74 42 Q102 32 110 18 Q118 32 146 42 Q192 60 192 116 V286"
                     fill="none" stroke="var(--gold)" stroke-width="0.8" opacity="0.6"/>
-              <g class="figure">
-                <!-- suit body: broad shoulders -->
-                <path d="M50 288 L56 208 Q60 166 94 152 L126 152 Q160 166 164 208 L170 288 Z" fill="var(--emerald-dark)"/>
-                <!-- shirt -->
-                <path d="M110 152 L94 156 L104 200 L110 214 L116 200 L126 156 Z" fill="var(--ivory)"/>
-                <!-- lapels -->
-                <path d="M94 154 L110 152 L102 196 L88 168 Z" fill="var(--emerald)" opacity="0.8"/>
-                <path d="M126 154 L110 152 L118 196 L132 168 Z" fill="var(--emerald)" opacity="0.8"/>
-                <!-- gold buttons -->
-                <circle cx="110" cy="224" r="2" fill="var(--gold)"/>
-                <circle cx="110" cy="240" r="2" fill="var(--gold)"/>
-                <!-- neck & head -->
-                <rect x="101" y="132" width="18" height="18" rx="6" fill="var(--skin)"/>
-                <ellipse cx="110" cy="114" rx="23" ry="26" fill="var(--skin)"/>
-                <!-- peci -->
-                <path d="M85 104 Q85 82 110 80 Q135 82 135 104 L133 111 Q110 102 87 111 Z" fill="var(--emerald-dark)"/>
-                <path d="M87 108 Q110 100 133 108" fill="none" stroke="var(--gold)" stroke-width="1.4"/>
-                <!-- pocket square -->
-                <path d="M132 176 l12 4 -3 9 -11 -5 Z" fill="var(--gold)"/>
-              </g>
             </svg>
+            <div class="arch-frame__media figure-float figure-float--alt">
+              <img class="arch-frame__img" id="groom-img" alt="" decoding="async" />
+              <span class="arch-frame__fallback" id="groom-fallback" hidden></span>
+            </div>
           </div>
           <h3 class="couple__name" id="groom-name"></h3>
           <p class="couple__parents" id="groom-parents"></p>

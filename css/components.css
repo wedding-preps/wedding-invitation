@@ -87,8 +87,45 @@
 
 /* ---------- Frame lengkung (mihrab) ---------- */
 .arch-frame {
+  position: relative;
   width: min(230px, 70vw);
   margin: 0 auto;
+}
+
+.arch-frame__outline {
+  width: 100%;
+  display: block;
+}
+
+/* Area gambar di dalam lengkungan, terpotong mengikuti bentuk mihrab */
+.arch-frame__media {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  clip-path: url(#arch-clip);
+}
+
+.arch-frame__img {
+  width: 84%;
+  height: 88%;
+  object-fit: contain;
+  object-position: bottom;
+}
+
+.arch-frame__img[hidden] {
+  display: none;
+}
+
+/* Fallback saat file gambar belum ada: inisial nama dalam serif emas */
+.arch-frame__fallback {
+  margin: auto;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 4.5rem;
+  color: var(--gold);
+  opacity: 0.85;
 }
 
 /* ---------- Field form ---------- */

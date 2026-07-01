@@ -7,10 +7,6 @@ di mana `fetch()` terhadap file SVG akan diblokir browser.
 
 - Ornamen: blok `<svg><defs><symbol id="orn-...">` di bagian atas `<body>`,
   dipakai ulang lewat `<use href="#orn-star8" />` dsb.
-- Ilustrasi mempelai: dua `<svg class="couple__art">` di seksi `#couple`.
-- Warna ilustrasi mengikuti token di `css/variables.css`
-  (`--skin`, `--champagne`, `--emerald-*`, `--gold`).
-
-Jika ingin mengganti ilustrasi, edit langsung SVG di `index.html`
-atau tempel SVG baru dengan struktur kelas yang sama
-(`figure-float`, `fabric-sway`, `ornament-draw-path` untuk efek animasinya).
+- Ilustrasi mempelai: **gambar PNG** yang diletakkan di `assets/img/`
+  (`bride.png` & `groom.png`), diatur lewat `couple.*.image` di `config.js`.
+  Lihat README.md utama bagian "Mengganti ilustrasi mempelai".

@@ -56,6 +56,40 @@ function bindContent() {
   setText("footer-closing", CONFIG.text.closingTitle);
 }
 
+/* ---------- Gambar mempelai (PNG dari config) ---------- */
+function bindCoupleImages() {
+  [
+    ["bride", CONFIG.couple.bride],
+    ["groom", CONFIG.couple.groom],
+  ].forEach(([key, person]) => {
+    const img = document.getElementById(`${key}-img`);
+    const fallback = document.getElementById(`${key}-fallback`);
+    if (!img) return;
+
+    // Tampilkan inisial dulu; gambar baru ditampilkan setelah berhasil dimuat,
+    // sehingga tidak ada ikon gambar rusak / teks alt yang sempat terlihat.
+    img.hidden = true;
+    if (fallback) {
+      fallback.hidden = false;
+      fallback.textContent = (person.nickName || person.fullName || "?")
+        .charAt(0)
+        .toUpperCase();
+    }
+    if (!person.image) return;
+
+    img.addEventListener(
+      "load",
+      () => {
+        if (fallback) fallback.hidden = true;
+        img.hidden = false;
+      },
+      { once: true }
+    );
+    img.src = person.image;
+    img.alt = `Ilustrasi ${person.fullName}`;
+  });
+}
+
 /* ---------- Kartu acara ---------- */
 function renderEvents() {
   const grid = document.getElementById("events-grid");
@@ -217,6 +251,7 @@ document.addEventListener("DOMContentLoaded", () => {
   document.documentElement.classList.remove("is-file-protocol");
 
   bindContent();
+  bindCoupleImages();
   renderEvents();
   renderStory();
 

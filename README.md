@@ -64,6 +64,23 @@ Gunakan musik yang bebas royalti / berlisensi. Musik diputar saat tamu
 menekan "Buka Undangan" (kebijakan autoplay browser mensyaratkan interaksi),
 dan bisa dimatikan lewat tombol bulat di kanan bawah.
 
+## Mengganti ilustrasi mempelai
+
+Seksi "Mempelai" menampilkan gambar PNG dari `config.js`:
+
+```js
+bride: { ..., image: "assets/img/bride.png" },
+groom: { ..., image: "assets/img/groom.png" },
+```
+
+1. Siapkan dua gambar (ilustrasi chibi, kartun, atau foto) — PNG dengan
+   latar transparan paling bagus, rasio tegak ± 3:4.
+2. Simpan sebagai `assets/img/bride.png` dan `assets/img/groom.png`
+   (atau nama lain, lalu sesuaikan `image` di `config.js`).
+3. Gambar otomatis tampil di dalam bingkai lengkung emas, terpotong
+   mengikuti bentuk mihrab. Selama file belum ada, bingkai menampilkan
+   inisial nama sebagai fallback.
+
 ## Mengganti foto galeri
 
 Ganti entri `gallery[]` di `config.js` dengan path foto asli, mis.:
