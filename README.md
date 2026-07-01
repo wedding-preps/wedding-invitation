@@ -153,26 +153,41 @@ pengirim — mock). Untuk penyimpanan terpusat:
 
 1. Buat Google Sheet baru → **Extensions → Apps Script**, tempel:
    ```js
+   // Menerima kiriman RSVP dari undangan
    function doPost(e) {
      const row = JSON.parse(e.postData.contents);
      SpreadsheetApp.getActiveSpreadsheet().getSheets()[0]
        .appendRow([row.timestamp, row.name, row.attendance, row.message]);
      return ContentService.createTextOutput("ok");
    }
-   ```
-2. **Deploy → New deployment → Web app**, akses: *Anyone* → salin URL.
-3. Isi URL tersebut ke `rsvp.endpoint` di `config.js`.
-4. Di [js/modules/rsvp.js](js/modules/rsvp.js), pada handler submit
-   (cari komentar `TODO`), tambahkan:
-   ```js
-   if (config.rsvp.endpoint) {
-     fetch(config.rsvp.endpoint, {
-       method: "POST",
-       mode: "no-cors",
-       body: JSON.stringify(entry),
-     });
+
+   // Mengembalikan seluruh ucapan agar tampil di undangan
+   function doGet() {
+     const rows = SpreadsheetApp.getActiveSpreadsheet().getSheets()[0]
+       .getDataRange().getValues();
+     const wishes = rows
+       .filter((r) => r[1] && r[3])
+       .map((r) => ({
+         timestamp: r[0],
+         name: String(r[1]),
+         attendance: String(r[2]),
+         message: String(r[3]),
+       }));
+     return ContentService.createTextOutput(JSON.stringify(wishes))
+       .setMimeType(ContentService.MimeType.JSON);
    }
    ```
+2. **Deploy → New deployment → Web app** dengan pengaturan:
+   - *Execute as*: **Me**
+   - *Who has access*: **Anyone** (bukan "Anyone with a Google Account" —
+     opsi itu menyebabkan error 401 bagi tamu)
+3. Salin URL web app (berakhiran `/exec`) ke `rsvp.endpoint` di `config.js`.
+   Frontend otomatis mengirim RSVP (POST) dan menampilkan seluruh ucapan
+   dari sheet (GET). Bila endpoint tidak terjangkau, undangan kembali
+   memakai penyimpanan lokal per-perangkat.
+4. Setiap kali mengubah kode skrip, buka **Deploy → Manage deployments →
+   ✏️ → Version: New version → Deploy** (mengedit deployment yang sama
+   menjaga URL tetap; deployment BARU menghasilkan URL berbeda).
 
 ### Opsi B — Formspree
 

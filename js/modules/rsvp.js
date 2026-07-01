@@ -1,12 +1,12 @@
 /**
  * rsvp.js — form konfirmasi kehadiran + daftar ucapan.
  *
- * Penyimpanan saat ini: localStorage (mock, per-perangkat).
- * TODO: hubungkan ke backend nyata (Google Apps Script / Formspree).
- *   1. Isi config.rsvp.endpoint dengan URL endpoint kamu.
- *   2. Di handler submit di bawah, kirim `entry` via fetch(endpoint, {method:"POST", ...}).
- *   3. Saat load, ambil daftar ucapan dari endpoint alih-alih localStorage.
- *   Lihat README.md bagian "Menghubungkan RSVP ke backend" untuk contoh lengkap.
+ * Penyimpanan:
+ *  - config.rsvp.endpoint terisi → kirim ke Google Apps Script (POST)
+ *    dan tampilkan daftar ucapan dari sheet (GET, butuh fungsi doGet
+ *    di skrip — lihat README.md "Menghubungkan RSVP ke backend").
+ *  - endpoint kosong / gagal dijangkau → localStorage (per-perangkat)
+ *    sebagai cadangan, plus seedWishes dari config.
  */
 const STORAGE_KEY = "wedding-rsvp-wishes";
 
@@ -19,6 +19,7 @@ export function init(config) {
   const status = document.getElementById("rsvp-status");
   const countEl = document.getElementById("wish-count");
   const options = config.rsvp.attendanceOptions || [];
+  const endpoint = (config.rsvp.endpoint || "").trim();
 
   // Isi pilihan kehadiran dari config
   if (select) {
@@ -50,9 +51,12 @@ export function init(config) {
   };
 
   let stored = loadStored();
+  // Daftar dari backend; null berarti belum/gagal dimuat → pakai lokal
+  let remoteWishes = null;
 
   const render = () => {
-    const wishes = [...stored, ...(config.rsvp.seedWishes || [])];
+    const wishes =
+      remoteWishes ?? [...stored, ...(config.rsvp.seedWishes || [])];
     list.replaceChildren(
       ...wishes.map(({ name, attendance, message }) => {
         const li = document.createElement("li");
@@ -81,6 +85,24 @@ export function init(config) {
     if (countEl) countEl.textContent = `(${wishes.length})`;
   };
 
+  // Ambil seluruh ucapan dari backend (doGet di Apps Script mengembalikan
+  // array JSON [{timestamp, name, attendance, message}, ...])
+  const loadRemote = async () => {
+    if (!endpoint) return;
+    try {
+      const res = await fetch(endpoint);
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const data = await res.json();
+      if (!Array.isArray(data)) throw new Error("format tidak dikenal");
+      remoteWishes = data
+        .filter((w) => w && w.name && w.message)
+        .reverse(); // baris terbaru di sheet tampil paling atas
+      render();
+    } catch {
+      /* offline / doGet belum dipasang — tetap tampilkan data lokal */
+    }
+  };
+
   form.addEventListener("submit", (e) => {
     e.preventDefault();
     const data = new FormData(form);
@@ -92,11 +114,26 @@ export function init(config) {
     };
     if (!entry.name || !entry.message) return;
 
-    // TODO: jika config.rsvp.endpoint terisi, kirim `entry` ke backend di sini.
-    stored = [entry, ...stored];
-    save(stored);
+    if (endpoint) {
+      fetch(endpoint, {
+        method: "POST",
+        mode: "no-cors",
+        body: JSON.stringify(entry),
+      });
+    }
+
+    // Tampilkan langsung (optimistis) sambil menunggu backend mencatat
+    if (remoteWishes) {
+      remoteWishes = [entry, ...remoteWishes];
+    } else {
+      stored = [entry, ...stored];
+      save(stored);
+    }
     render();
     form.reset();
+
+    // Segarkan dari backend agar daftar sinkron dengan sheet
+    if (endpoint) setTimeout(loadRemote, 3000);
 
     if (status) {
       status.textContent = "Terima kasih, ucapan Anda telah terkirim ✦";
@@ -105,4 +142,15 @@ export function init(config) {
   });
 
   render();
+  loadRemote();
+
+  // Sinkronkan daftar ucapan secara berkala (5 dtk) dan setiap kali
+  // tab kembali aktif, agar perubahan di sheet (termasuk penghapusan)
+  // terlihat tanpa perlu memuat ulang halaman.
+  if (endpoint) {
+    setInterval(loadRemote, 5000);
+    document.addEventListener("visibilitychange", () => {
+      if (!document.hidden) loadRemote();
+    });
+  }
 }

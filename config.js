@@ -153,19 +153,19 @@ export const CONFIG = {
   rsvp: {
     // TODO: isi endpoint Google Apps Script / Formspree untuk penyimpanan asli.
     // Lihat README.md bagian "Menghubungkan RSVP ke backend".
-    endpoint: "",
+    endpoint: "https://script.google.com/macros/s/AKfycbzyw2LFckcwH7P7mAx48vTLmzNHqQuKDnAnKXv2hzkBTSd_WujuqBpp5nOK9ILtuBKR6g/exec",
     attendanceOptions: [
       { value: "hadir", label: "InsyaAllah Hadir" },
       { value: "tidak-hadir", label: "Berhalangan Hadir" },
       { value: "ragu", label: "Masih Ragu" },
     ],
     // Ucapan contoh yang tampil sebelum ada kiriman
-    seedWishes: [
-      {
-        name: "Keluarga Besar",
-        attendance: "hadir",
-        message: "Barakallahu laka wa baraka 'alaika wa jama'a bainakuma fii khair. Selamat menempuh hidup baru!",
-      },
-    ],
+    // seedWishes: [
+    //   {
+    //     name: "Keluarga Besar",
+    //     attendance: "hadir",
+    //     message: "Barakallahu laka wa baraka 'alaika wa jama'a bainakuma fii khair. Selamat menempuh hidup baru!",
+    //   },
+    // ],
   },
 };
