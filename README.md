@@ -56,9 +56,23 @@ Tanpa parameter, nama tamu default: **"Tamu Undangan"**.
 
 ## Mengganti musik
 
-1. Letakkan file mp3 di `assets/audio/`, mis. `assets/audio/lagu.mp3`
-   (file bawaan `music.wav` hanya placeholder hening).
-2. Ubah `music.src` di `config.js` menjadi `"assets/audio/lagu.mp3"`.
+Dua cara, diatur di `config.js` bagian `music`:
+
+**1. Streaming dari YouTube (tanpa file lokal)** — isi `youtubeId` dengan ID
+video (bagian setelah `watch?v=` pada URL). Contoh: untuk
+`youtube.com/watch?v=mHpTdsBbYRM`, isi `youtubeId: "mHpTdsBbYRM"`.
+Musik di-stream lewat pemutar YouTube tersembunyi.
+
+Catatan penting untuk opsi YouTube:
+- Butuh koneksi internet di sisi tamu (kuota terpakai lebih besar
+  daripada mp3, karena YouTube tetap mengirim video).
+- Hanya berfungsi jika pemilik video mengizinkan embed. Bila video
+  dihapus/diblokir, undangan otomatis memutar file `src` sebagai cadangan.
+- Ada jeda ± 1–3 detik saat pemutar dimuat pertama kali.
+
+**2. File mp3 lokal (paling andal)** — kosongkan `youtubeId` (`""`), letakkan
+file di `assets/audio/`, lalu isi `src: "assets/audio/lagu.mp3"`.
+File bawaan `music.wav` hanya placeholder.
 
 Gunakan musik yang bebas royalti / berlisensi. Musik diputar saat tamu
 menekan "Buka Undangan" (kebijakan autoplay browser mensyaratkan interaksi),

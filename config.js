@@ -30,9 +30,9 @@ export const CONFIG = {
 
   // ---------- Tanggal utama (dipakai countdown & kalender) ----------
   // Format ISO dengan offset WIB (+07:00)
-  weddingDate: "2026-11-14T08:00:00+07:00",
-  weddingDateEnd: "2026-11-14T14:00:00+07:00",
-  dateDisplay: "Sabtu, 14 November 2026",
+  weddingDate: "2026-08-09T08:00:00+07:00",
+  weddingDateEnd: "2026-08-09T14:00:00+07:00",
+  dateDisplay: "Ahad, 9 Agustus 2026",
 
   // ---------- Acara ----------
   events: [
@@ -107,39 +107,44 @@ export const CONFIG = {
     },
   ],
 
-  // ---------- Galeri (ganti dengan foto asli, rasio bebas) ----------
-  gallery: [
-    { src: "https://placehold.co/600x800/0F3D2E/C9A227?text=Foto+1", alt: "Foto prewedding 1" },
-    { src: "https://placehold.co/600x600/14503C/FAF7F0?text=Foto+2", alt: "Foto prewedding 2" },
-    { src: "https://placehold.co/600x800/1B5E46/C9A227?text=Foto+3", alt: "Foto prewedding 3" },
-    { src: "https://placehold.co/600x600/0F3D2E/FAF7F0?text=Foto+4", alt: "Foto prewedding 4" },
-    { src: "https://placehold.co/600x800/14503C/C9A227?text=Foto+5", alt: "Foto prewedding 5" },
-    { src: "https://placehold.co/600x600/1B5E46/FAF7F0?text=Foto+6", alt: "Foto prewedding 6" },
-  ],
+  // // ---------- Galeri (ganti dengan foto asli, rasio bebas) ----------
+  // gallery: [
+  //   { src: "https://placehold.co/600x800/0F3D2E/C9A227?text=Foto+1", alt: "Foto prewedding 1" },
+  //   { src: "https://placehold.co/600x600/14503C/FAF7F0?text=Foto+2", alt: "Foto prewedding 2" },
+  //   { src: "https://placehold.co/600x800/1B5E46/C9A227?text=Foto+3", alt: "Foto prewedding 3" },
+  //   { src: "https://placehold.co/600x600/0F3D2E/FAF7F0?text=Foto+4", alt: "Foto prewedding 4" },
+  //   { src: "https://placehold.co/600x800/14503C/C9A227?text=Foto+5", alt: "Foto prewedding 5" },
+  //   { src: "https://placehold.co/600x600/1B5E46/FAF7F0?text=Foto+6", alt: "Foto prewedding 6" },
+  // ],
 
   // ---------- Amplop digital ----------
   gifts: [
     {
       bank: "Bank BCA",
       accountNumber: "1234567890",
-      accountName: "Aisyah Putri Rahmadani",
+      accountName: "Inas Rasyidah",
     },
     {
       bank: "Bank Mandiri",
       accountNumber: "0987654321",
-      accountName: "Muhammad Rizky Pratama",
+      accountName: "Achmad Naufal Romiz",
     },
   ],
   giftAddress: {
     label: "Kirim Kado",
-    recipient: "Rizky & Aisyah",
-    address: "Jl. Melati No. 12, Kebayoran Baru, Jakarta Selatan 12110",
+    recipient: "Ahmad Naufal Romiz",
+    address: "Perumahan Griya Jemani",
   },
 
   // ---------- Musik ----------
-  // Ganti dengan file mp3 milikmu (letakkan di assets/audio/).
-  // File bawaan adalah placeholder hening.
+  // Pilihan 1 (streaming, tanpa file lokal): isi youtubeId dengan ID video
+  //   YouTube (bagian setelah "watch?v="). Musik di-stream lewat pemutar
+  //   YouTube tersembunyi. Kosongkan ("") untuk menonaktifkan.
+  // Pilihan 2 (file lokal): kosongkan youtubeId, isi src dengan path mp3
+  //   di assets/audio/. src juga dipakai sebagai cadangan otomatis bila
+  //   YouTube gagal dimuat (offline / embed diblokir).
   music: {
+    youtubeId: "4P2OpaVzxvA",
     src: "assets/audio/music.wav",
     autoplayAfterOpen: true,
   },

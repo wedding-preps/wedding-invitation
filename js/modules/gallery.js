@@ -4,10 +4,15 @@
  */
 export function init(config) {
   const grid = document.getElementById("gallery-grid");
-  if (!grid) return;
-
   const photos = config.gallery || [];
-  if (!photos.length) return;
+
+  // Seksi dihapus dari HTML atau tidak ada foto di config:
+  // singkirkan sisa seksi + tautan nav galeri agar tidak menggantung
+  if (!grid || !photos.length) {
+    document.getElementById("gallery")?.remove();
+    document.querySelector('.bottom-nav__item[href="#gallery"]')?.remove();
+    return;
+  }
 
   const lightbox = document.getElementById("lightbox");
   const lightboxImg = document.getElementById("lightbox-img");
