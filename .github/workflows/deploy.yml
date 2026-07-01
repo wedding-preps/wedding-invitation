@@ -1,0 +1,61 @@
+# CI/CD — validasi lalu deploy ke GitHub Pages setiap push ke main.
+# Situs ini statis tanpa build step, jadi "build" = pemeriksaan ringan
+# + unggah seluruh isi repo sebagai artefak Pages.
+#
+# Prasyarat sekali saja di GitHub:
+#   Settings → Pages → Build and deployment → Source: "GitHub Actions"
+name: Deploy ke GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch: # bisa juga dijalankan manual dari tab Actions
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Hanya satu deploy berjalan pada satu waktu; yang usang dibatalkan
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Validasi sintaks JavaScript
+        run: |
+          set -e
+          for f in config.js js/main.js js/modules/*.js; do
+            node --check "$f"
+            echo "OK $f"
+          done
+
+      - name: Pastikan berkas inti ada
+        run: |
+          test -f index.html
+          test -f config.js
+          ls css/*.css js/modules/*.js > /dev/null
+
+      - name: Konfigurasi Pages
+        uses: actions/configure-pages@v5
+        with:
+          # aktifkan GitHub Pages otomatis pada run pertama
+          enablement: true
+
+      - name: Unggah artefak situs
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+
+      - name: Deploy ke GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

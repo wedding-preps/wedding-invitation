@@ -108,10 +108,15 @@ gallery: [
 
 Kompres foto dulu (≤ 300 KB per foto, lebar ± 1200px cukup) agar tetap ringan.
 
-## Deploy ke GitHub Pages
+## Deploy ke GitHub Pages (otomatis via GitHub Actions)
 
-1. Buat repository baru di GitHub (mis. `undangan-nikah`).
-2. Push seluruh isi folder ini:
+Repo ini sudah punya workflow CI/CD di
+[.github/workflows/deploy.yml](.github/workflows/deploy.yml):
+setiap push ke `main` akan memvalidasi sintaks JS lalu menerbitkan situs.
+
+Penyiapan sekali saja:
+
+1. Push repo ke GitHub (bila belum):
    ```bash
    git init
    git add .
@@ -120,11 +125,13 @@ Kompres foto dulu (≤ 300 KB per foto, lebar ± 1200px cukup) agar tetap ringan
    git remote add origin https://github.com/USERNAME/undangan-nikah.git
    git push -u origin main
    ```
-3. Di GitHub: **Settings → Pages → Build and deployment**
-   - Source: *Deploy from a branch*
-   - Branch: `main`, folder `/ (root)` → **Save**
-4. Tunggu ± 1 menit. Undangan tersedia di
-   `https://USERNAME.github.io/undangan-nikah/?to=Nama+Tamu`
+2. Di GitHub: **Settings → Pages → Build and deployment →
+   Source: pilih "GitHub Actions"** (bukan "Deploy from a branch").
+3. Selesai. Setiap `git push` ke `main` otomatis men-deploy.
+   Pantau prosesnya di tab **Actions**; alamat situs muncul di ringkasan
+   job deploy: `https://USERNAME.github.io/NAMA-REPO/?to=Nama+Tamu`
+   (workflow juga bisa dijalankan manual: Actions → *Deploy ke GitHub
+   Pages* → Run workflow).
 
 ## Deploy ke Vercel
 
