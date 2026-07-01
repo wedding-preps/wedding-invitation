@@ -1,0 +1,307 @@
+/* ============================================================
+   KOMPONEN — kartu, tombol, frame, nav, field, lightbox
+   ============================================================ */
+
+/* ---------- Ornamen ---------- */
+.orn-gold {
+  color: var(--gold);
+  fill: currentColor;
+  stroke: currentColor;
+}
+
+.divider {
+  width: min(220px, 60%);
+  height: 26px;
+  margin: 0 auto;
+  display: block;
+  color: var(--gold);
+  fill: none;
+  stroke: currentColor;
+}
+
+/* ---------- Kartu ---------- */
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: var(--space-3);
+}
+
+.card--ornate {
+  position: relative;
+  border-radius: var(--radius-lg);
+  padding: var(--space-4) var(--space-3);
+}
+
+.card--ornate::before {
+  content: "";
+  position: absolute;
+  inset: 8px;
+  border: 1px solid var(--gold-soft);
+  border-radius: calc(var(--radius-lg) - 8px);
+  pointer-events: none;
+}
+
+/* ---------- Tombol ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6em;
+  padding: 0.8em 1.8em;
+  border-radius: 999px;
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 0.95rem;
+  letter-spacing: 0.06em;
+  transition: transform 0.3s var(--ease-out), box-shadow 0.3s var(--ease-out),
+    background-color 0.3s;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+.btn--gold {
+  background: linear-gradient(135deg, var(--gold), #b08d1e);
+  color: var(--ivory);
+  box-shadow: 0 6px 18px rgba(201, 162, 39, 0.4);
+}
+
+.btn--outline {
+  border: 1px solid var(--gold);
+  color: var(--emerald);
+  background: transparent;
+}
+
+.btn__icon {
+  width: 1.2em;
+  height: 1.2em;
+  flex: none;
+}
+
+/* ---------- Frame lengkung (mihrab) ---------- */
+.arch-frame {
+  width: min(230px, 70vw);
+  margin: 0 auto;
+}
+
+/* ---------- Field form ---------- */
+.field {
+  display: block;
+  margin-bottom: var(--space-2);
+  text-align: left;
+}
+
+.field__label {
+  display: block;
+  font-size: var(--fs-small);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--emerald);
+  margin-bottom: 0.35em;
+}
+
+.field__input {
+  width: 100%;
+  padding: 0.75em 1em;
+  border: 1px solid var(--card-border);
+  border-radius: 10px;
+  background: var(--ivory);
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.field__input:focus {
+  outline: none;
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px var(--gold-soft);
+}
+
+textarea.field__input {
+  resize: vertical;
+}
+
+/* ---------- Navigasi bawah ---------- */
+.bottom-nav {
+  position: fixed;
+  left: 50%;
+  bottom: 12px;
+  transform: translateX(-50%);
+  z-index: 60;
+  display: flex;
+  gap: 2px;
+  padding: 6px;
+  border-radius: 999px;
+  background: rgba(15, 61, 46, 0.92);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 8px 24px rgba(10, 44, 33, 0.4);
+  border: 1px solid rgba(201, 162, 39, 0.3);
+}
+
+.bottom-nav[hidden] {
+  display: none;
+}
+
+.bottom-nav__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  min-width: 56px;
+  padding: 6px 8px;
+  border-radius: 999px;
+  color: rgba(250, 247, 240, 0.65);
+  font-size: 0.62rem;
+  letter-spacing: 0.04em;
+  transition: color 0.3s, background-color 0.3s;
+}
+
+.bottom-nav__item svg {
+  width: 20px;
+  height: 20px;
+}
+
+.bottom-nav__item.is-active {
+  color: var(--gold-light);
+  background: rgba(201, 162, 39, 0.14);
+}
+
+.nav-spacer {
+  height: calc(var(--nav-height) + 24px);
+}
+
+/* ---------- Tombol musik ---------- */
+.music-toggle {
+  position: fixed;
+  right: 14px;
+  bottom: calc(var(--nav-height) + 26px);
+  z-index: 60;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--emerald);
+  color: var(--gold-light);
+  border: 1px solid var(--gold-soft);
+  box-shadow: var(--shadow);
+  display: grid;
+  place-items: center;
+}
+
+.music-toggle[hidden] {
+  display: none;
+}
+
+.music-toggle svg {
+  width: 20px;
+  height: 20px;
+}
+
+.music-toggle .music-toggle__slash {
+  opacity: 1;
+  transition: opacity 0.2s;
+}
+
+.music-toggle.is-playing .music-toggle__slash {
+  opacity: 0;
+}
+
+.music-toggle.is-playing {
+  animation: music-spin 6s linear infinite;
+}
+
+/* ---------- Lightbox ---------- */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: rgba(10, 30, 23, 0.94);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lightbox[hidden] {
+  display: none;
+}
+
+.lightbox__img {
+  max-width: 88vw;
+  max-height: 82vh;
+  border-radius: var(--radius);
+  border: 1px solid var(--gold-soft);
+}
+
+.lightbox__close,
+.lightbox__nav {
+  position: absolute;
+  color: var(--ivory);
+  font-size: 2rem;
+  line-height: 1;
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: rgba(250, 247, 240, 0.08);
+  transition: background-color 0.3s;
+}
+
+.lightbox__close:hover,
+.lightbox__nav:hover {
+  background: rgba(201, 162, 39, 0.3);
+}
+
+.lightbox__close {
+  top: 16px;
+  right: 16px;
+}
+
+.lightbox__nav--prev {
+  left: 10px;
+}
+
+.lightbox__nav--next {
+  right: 10px;
+}
+
+/* ---------- Peringatan protokol file:// ---------- */
+.cover__file-warning {
+  display: none;
+}
+
+html.is-file-protocol .cover__file-warning {
+  display: block;
+  margin: 0 auto var(--space-2);
+  max-width: 40ch;
+  font-size: 0.8rem;
+  line-height: 1.6;
+  color: var(--gold-light);
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid var(--gold-soft);
+  border-radius: var(--radius);
+  padding: var(--space-2);
+}
+
+html.is-file-protocol .cover__file-warning code {
+  color: var(--ivory);
+}
+
+/* ---------- Partikel ---------- */
+.particles {
+  position: fixed;
+  inset: 0;
+  z-index: 5;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.particle {
+  position: absolute;
+  color: var(--gold);
+  opacity: 0;
+}

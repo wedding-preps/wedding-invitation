@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Undangan Pernikahan</title>
+  <meta name="description" content="Undangan pernikahan digital" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Amiri:wght@400;700&family=Jost:wght@300;400;500&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/sections.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+</head>
+<body class="is-locked">
+
+  <!-- ===== SVG symbol library (ornaments) ===== -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <!-- 8-pointed Islamic star -->
+      <symbol id="orn-star8" viewBox="-12 -12 24 24">
+        <polygon points="11,0 5.54,2.3 7.78,7.78 2.3,5.54 0,11 -2.3,5.54 -7.78,7.78 -5.54,2.3 -11,0 -5.54,-2.3 -7.78,-7.78 -2.3,-5.54 0,-11 2.3,-5.54 7.78,-7.78 5.54,-2.3" />
+        <circle r="2.6" />
+      </symbol>
+      <!-- Section divider: line — star — line -->
+      <symbol id="orn-divider" viewBox="0 0 200 24">
+        <line x1="8" y1="12" x2="78" y2="12" stroke-width="1" />
+        <circle cx="84" cy="12" r="1.6" />
+        <g transform="translate(100 12) scale(0.9)">
+          <polygon points="11,0 5.54,2.3 7.78,7.78 2.3,5.54 0,11 -2.3,5.54 -7.78,7.78 -5.54,2.3 -11,0 -5.54,-2.3 -7.78,-7.78 -2.3,-5.54 0,-11 2.3,-5.54 7.78,-7.78 5.54,-2.3" fill="none" stroke-width="1.2" />
+          <circle r="2.4" fill="currentColor" stroke="none" />
+        </g>
+        <circle cx="116" cy="12" r="1.6" />
+        <line x1="122" y1="12" x2="192" y2="12" stroke-width="1" />
+      </symbol>
+      <!-- Corner arabesque flourish -->
+      <symbol id="orn-corner" viewBox="0 0 80 80">
+        <path d="M4 76 V28 Q4 4 28 4 H76" fill="none" stroke-width="1.4" />
+        <path d="M12 76 V32 Q12 12 32 12 H76" fill="none" stroke-width="0.9" />
+        <path d="M20 40 Q20 22 38 22 Q30 30 34 38 Q26 34 20 40 Z" stroke-width="0.9" fill="none" />
+        <circle cx="10" cy="10" r="2.4" />
+      </symbol>
+      <!-- Drifting leaf (particles) -->
+      <symbol id="orn-leaf" viewBox="0 0 24 24">
+        <path d="M12 2 Q20 8 18 16 Q16 22 12 22 Q8 22 6 16 Q4 8 12 2 Z M12 5 V19" fill="none" stroke-width="1.2" />
+      </symbol>
+    </defs>
+  </svg>
+
+  <!-- ============================================================
+       COVER / OPENING
+  ============================================================ -->
+  <div class="cover" id="cover" role="dialog" aria-modal="true" aria-label="Sampul undangan">
+    <div class="cover__panel">
+      <svg class="cover__corner cover__corner--tl orn-gold" aria-hidden="true"><use href="#orn-corner" /></svg>
+      <svg class="cover__corner cover__corner--tr orn-gold" aria-hidden="true"><use href="#orn-corner" /></svg>
+      <svg class="cover__corner cover__corner--bl orn-gold" aria-hidden="true"><use href="#orn-corner" /></svg>
+      <svg class="cover__corner cover__corner--br orn-gold" aria-hidden="true"><use href="#orn-corner" /></svg>
+
+      <p class="cover__eyebrow" id="cover-eyebrow"></p>
+      <svg class="cover__star orn-gold" aria-hidden="true"><use href="#orn-star8" /></svg>
+      <h1 class="cover__names" id="cover-names"></h1>
+      <p class="cover__date" id="cover-date"></p>
+
+      <div class="cover__guest">
+        <p class="cover__guest-label" id="cover-guest-label"></p>
+        <p class="cover__guest-name" id="guest-name"></p>
+      </div>
+
+      <p class="cover__file-warning">
+        Halaman ini dibuka langsung dari file lokal, sehingga browser memblokir
+        sebagian skrip. Jalankan <code>python3 -m http.server</code> di folder
+        proyek lalu buka <code>http://localhost:8000</code>, atau deploy ke
+        hosting statis (lihat README.md).
+      </p>
+
+      <button class="btn btn--gold cover__open" id="btn-open" type="button">
+        <svg class="btn__icon" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M3 8l9 6 9-6M4 6h16a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span id="cover-button-text"></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Music -->
+  <audio id="bg-music" loop preload="none"></audio>
+  <button class="music-toggle" id="btn-music" type="button" aria-label="Putar / hentikan musik" hidden>
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path class="music-toggle__on" d="M9 18V6l10-2v12M9 18a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0Zm10-2a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+      <line class="music-toggle__slash" x1="4" y1="4" x2="20" y2="20" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+    </svg>
+  </button>
+
+  <!-- Particles layer -->
+  <div class="particles" id="particles" aria-hidden="true"></div>
+
+  <main id="content">
+
+    <!-- ===== HERO ===== -->
+    <section class="section hero" id="hero">
+      <div class="hero__frame">
+        <svg class="hero__corner hero__corner--tl orn-gold ornament-draw" aria-hidden="true"><use href="#orn-corner" /></svg>
+        <svg class="hero__corner hero__corner--tr orn-gold ornament-draw" aria-hidden="true"><use href="#orn-corner" /></svg>
+        <svg class="hero__corner hero__corner--bl orn-gold ornament-draw" aria-hidden="true"><use href="#orn-corner" /></svg>
+        <svg class="hero__corner hero__corner--br orn-gold ornament-draw" aria-hidden="true"><use href="#orn-corner" /></svg>
+
+        <p class="arabic hero__bismillah" id="hero-bismillah" data-reveal="blur"></p>
+        <p class="hero__intro" id="hero-intro" data-reveal="fade"></p>
+        <h1 class="hero__names" id="hero-names" data-reveal="scale"></h1>
+        <svg class="divider orn-gold" aria-hidden="true" data-reveal="fade"><use href="#orn-divider" /></svg>
+        <p class="hero__date" id="hero-date" data-reveal="fade"></p>
+        <p class="hero__hashtag" id="hero-hashtag" data-reveal="fade"></p>
+      </div>
+    </section>
+
+    <!-- ===== QURAN VERSE ===== -->
+    <section class="section verse" id="verse">
+      <div class="verse__frame card card--ornate" data-reveal="scale">
+        <svg class="verse__star orn-gold" aria-hidden="true"><use href="#orn-star8" /></svg>
+        <p class="arabic verse__arabic" id="verse-arabic" data-reveal="blur"></p>
+        <p class="verse__translation" id="verse-translation" data-reveal="fade"></p>
+        <p class="verse__source" id="verse-source" data-reveal="fade"></p>
+      </div>
+    </section>
+
+    <!-- ===== COUPLE ===== -->
+    <section class="section couple" id="couple">
+      <header class="section__head" data-reveal="fade">
+        <svg class="divider orn-gold" aria-hidden="true"><use href="#orn-divider" /></svg>
+        <h2 class="section__title">Mempelai</h2>
+      </header>
+
+      <div class="couple__grid" data-reveal-group>
+        <!-- Bride -->
+        <article class="couple__card" data-reveal="fade">
+          <div class="arch-frame">
+            <svg class="couple__art figure-float" viewBox="0 0 220 300" role="img" aria-label="Ilustrasi mempelai wanita">
+              <path class="arch-frame__line ornament-draw-path" d="M18 286 V112 Q18 52 68 34 Q98 24 110 6 Q122 24 152 34 Q202 52 202 112 V286"
+                    fill="none" stroke="var(--gold)" stroke-width="2"/>
+              <path d="M28 286 V116 Q28 60 74 42 Q102 32 110 18 Q118 32 146 42 Q192 60 192 116 V286"
+                    fill="none" stroke="var(--gold)" stroke-width="0.8" opacity="0.6"/>
+              <g class="figure">
+                <!-- gown -->
+                <g class="fabric-sway">
+                  <path d="M58 288 Q62 218 84 196 L136 196 Q158 218 162 288 Z" fill="var(--emerald-light)"/>
+                  <path d="M58 288 Q62 218 84 196 L96 196 Q76 224 72 288 Z" fill="var(--emerald)" opacity="0.5"/>
+                  <path d="M60 280 Q110 270 160 280" fill="none" stroke="var(--gold)" stroke-width="1.6"/>
+                </g>
+                <!-- hijab -->
+                <path d="M110 84 Q64 92 60 148 Q57 190 84 202 L136 202 Q163 190 160 148 Q156 92 110 84 Z" fill="var(--champagne)"/>
+                <path d="M110 84 Q64 92 60 148 Q58 178 74 194 Q66 154 78 126 Q88 100 110 96 Z" fill="var(--champagne-dark)" opacity="0.55"/>
+                <!-- face (faceless, tasteful) -->
+                <ellipse cx="110" cy="138" rx="21" ry="25" fill="var(--skin)"/>
+                <path d="M89 130 Q94 106 110 104 Q126 106 131 130 Q124 118 110 118 Q96 118 89 130 Z" fill="var(--champagne)"/>
+                <!-- gold floral accent on hijab -->
+                <g fill="none" stroke="var(--gold)" stroke-width="1.1">
+                  <circle cx="83" cy="122" r="3"/>
+                  <path d="M83 116 v-4 M83 128 v4 M77 122 h-4 M89 122 h4"/>
+                </g>
+              </g>
+            </svg>
+          </div>
+          <h3 class="couple__name" id="bride-name"></h3>
+          <p class="couple__parents" id="bride-parents"></p>
+        </article>
+
+        <div class="couple__amp" data-reveal="scale" aria-hidden="true">&amp;</div>
+
+        <!-- Groom -->
+        <article class="couple__card" data-reveal="fade">
+          <div class="arch-frame">
+            <svg class="couple__art figure-float figure-float--alt" viewBox="0 0 220 300" role="img" aria-label="Ilustrasi mempelai pria">
+              <path class="arch-frame__line ornament-draw-path" d="M18 286 V112 Q18 52 68 34 Q98 24 110 6 Q122 24 152 34 Q202 52 202 112 V286"
+                    fill="none" stroke="var(--gold)" stroke-width="2"/>
+              <path d="M28 286 V116 Q28 60 74 42 Q102 32 110 18 Q118 32 146 42 Q192 60 192 116 V286"
+                    fill="none" stroke="var(--gold)" stroke-width="0.8" opacity="0.6"/>
+              <g class="figure">
+                <!-- suit body: broad shoulders -->
+                <path d="M50 288 L56 208 Q60 166 94 152 L126 152 Q160 166 164 208 L170 288 Z" fill="var(--emerald-dark)"/>
+                <!-- shirt -->
+                <path d="M110 152 L94 156 L104 200 L110 214 L116 200 L126 156 Z" fill="var(--ivory)"/>
+                <!-- lapels -->
+                <path d="M94 154 L110 152 L102 196 L88 168 Z" fill="var(--emerald)" opacity="0.8"/>
+                <path d="M126 154 L110 152 L118 196 L132 168 Z" fill="var(--emerald)" opacity="0.8"/>
+                <!-- gold buttons -->
+                <circle cx="110" cy="224" r="2" fill="var(--gold)"/>
+                <circle cx="110" cy="240" r="2" fill="var(--gold)"/>
+                <!-- neck & head -->
+                <rect x="101" y="132" width="18" height="18" rx="6" fill="var(--skin)"/>
+                <ellipse cx="110" cy="114" rx="23" ry="26" fill="var(--skin)"/>
+                <!-- peci -->
+                <path d="M85 104 Q85 82 110 80 Q135 82 135 104 L133 111 Q110 102 87 111 Z" fill="var(--emerald-dark)"/>
+                <path d="M87 108 Q110 100 133 108" fill="none" stroke="var(--gold)" stroke-width="1.4"/>
+                <!-- pocket square -->
+                <path d="M132 176 l12 4 -3 9 -11 -5 Z" fill="var(--gold)"/>
+              </g>
+            </svg>
+          </div>
+          <h3 class="couple__name" id="groom-name"></h3>
+          <p class="couple__parents" id="groom-parents"></p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===== COUNTDOWN ===== -->
+    <section class="section countdown" id="countdown">
+      <header class="section__head" data-reveal="fade">
+        <svg class="divider orn-gold" aria-hidden="true"><use href="#orn-divider" /></svg>
+        <h2 class="section__title">Menghitung Hari</h2>
+        <p class="section__subtitle" id="countdown-date"></p>
+      </header>
+
+      <div class="countdown__grid" id="countdown-grid" data-reveal-group>
+        <div class="countdown__unit card" data-reveal="scale"><span class="countdown__num" data-unit="days">0</span><span class="countdown__label">Hari</span></div>
+        <div class="countdown__unit card" data-reveal="scale"><span class="countdown__num" data-unit="hours">0</span><span class="countdown__label">Jam</span></div>
+        <div class="countdown__unit card" data-reveal="scale"><span class="countdown__num" data-unit="minutes">0</span><span class="countdown__label">Menit</span></div>
+        <div class="countdown__unit card" data-reveal="scale"><span class="countdown__num" data-unit="seconds">0</span><span class="countdown__label">Detik</span></div>
+      </div>
+
+      <p class="countdown__done" id="countdown-done" hidden data-reveal="fade">Alhamdulillah, hari bahagia telah tiba</p>
+
+      <a class="btn btn--outline" id="btn-calendar" target="_blank" rel="noopener" data-reveal="fade">
+        <svg class="btn__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3v3m8-3v3M4 8h16M6 5h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Zm5 8h2v2h-2v-2Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        Simpan ke Google Calendar
+      </a>
+    </section>
+
+    <!-- ===== EVENTS ===== -->
+    <section class="section events" id="events">
+      <header class="section__head" data-reveal="fade">
+        <svg class="divider orn-gold" aria-hidden="true"><use href="#orn-divider" /></svg>
+        <h2 class="section__title">Rangkaian Acara</h2>
+      </header>
+
+      <div class="events__grid" id="events-grid" data-reveal-group></div>
+
+      <div class="events__map card" data-reveal="fade">
+        <iframe id="events-map" title="Peta lokasi acara" loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+      </div>
+    </section>
+
+    <!-- ===== LOVE STORY ===== -->
+    <section class="section story" id="story">
+      <header class="section__head" data-reveal="fade">
+        <svg class="divider orn-gold" aria-hidden="true"><use href="#orn-divider" /></svg>
+        <h2 class="section__title">Kisah Kami</h2>
+      </header>
+      <div class="story__timeline" id="story-timeline" data-reveal-group></div>
+    </section>
+
+    <!-- ===== GALLERY ===== -->
+    <section class="section gallery" id="gallery">
+      <header class="section__head" data-reveal="fade">
+        <svg class="divider orn-gold" aria-hidden="true"><use href="#orn-divider" /></svg>
+        <h2 class="section__title">Galeri</h2>
+      </header>
+      <div class="gallery__grid" id="gallery-grid" data-reveal-group></div>
+    </section>
+
+    <!-- ===== RSVP & WISHES ===== -->
+    <section class="section rsvp" id="rsvp">
+      <header class="section__head" data-reveal="fade">
+        <svg class="divider orn-gold" aria-hidden="true"><use href="#orn-divider" /></svg>
+        <h2 class="section__title">RSVP &amp; Ucapan</h2>
+        <p class="section__subtitle">Konfirmasi kehadiran dan kirimkan doa terbaik</p>
+      </header>
+
+      <form class="rsvp__form card" id="rsvp-form" data-reveal="fade">
+        <label class="field">
+          <span class="field__label">Nama</span>
+          <input class="field__input" type="text" name="name" id="rsvp-name" required maxlength="60" autocomplete="name" placeholder="Nama Anda" />
+        </label>
+        <label class="field">
+          <span class="field__label">Kehadiran</span>
+          <select class="field__input" name="attendance" id="rsvp-attendance" required></select>
+        </label>
+        <label class="field">
+          <span class="field__label">Ucapan &amp; Doa</span>
+          <textarea class="field__input" name="message" id="rsvp-message" rows="4" required maxlength="500" placeholder="Tuliskan ucapan dan doa..."></textarea>
+        </label>
+        <button class="btn btn--gold" type="submit">Kirim Ucapan</button>
+        <p class="rsvp__status" id="rsvp-status" role="status"></p>
+      </form>
+
+      <div class="rsvp__wishes" data-reveal="fade">
+        <h3 class="rsvp__wishes-title">Ucapan &amp; Doa <span id="wish-count"></span></h3>
+        <ul class="rsvp__list" id="wish-list"></ul>
+      </div>
+    </section>
+
+    <!-- ===== GIFT ===== -->
+    <section class="section gift" id="gift">
+      <header class="section__head" data-reveal="fade">
+        <svg class="divider orn-gold" aria-hidden="true"><use href="#orn-divider" /></svg>
+        <h2 class="section__title">Amplop Digital</h2>
+        <p class="section__subtitle">Doa restu Anda adalah hadiah terindah. Namun jika ingin memberikan tanda kasih, dapat melalui:</p>
+      </header>
+      <div class="gift__grid" id="gift-grid" data-reveal-group></div>
+      <div class="gift__address card" id="gift-address" data-reveal="fade"></div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="section footer" id="footer">
+      <svg class="footer__star orn-gold" aria-hidden="true" data-reveal="scale"><use href="#orn-star8" /></svg>
+      <p class="footer__note" id="footer-note" data-reveal="fade"></p>
+      <p class="footer__thanks" id="footer-thanks" data-reveal="fade"></p>
+      <h2 class="footer__names" id="footer-names" data-reveal="scale"></h2>
+      <p class="arabic footer__closing" id="footer-closing" data-reveal="blur"></p>
+    </footer>
+
+    <div class="nav-spacer" aria-hidden="true"></div>
+  </main>
+
+  <!-- ===== BOTTOM NAV ===== -->
+  <nav class="bottom-nav" id="bottom-nav" aria-label="Navigasi undangan" hidden>
+    <a href="#hero" class="bottom-nav__item" aria-label="Beranda">
+      <svg viewBox="0 0 24 24"><path d="M4 11 12 4l8 7v8a1 1 0 0 1-1 1h-5v-6h-4v6H5a1 1 0 0 1-1-1v-8Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+      <span>Beranda</span>
+    </a>
+    <a href="#couple" class="bottom-nav__item" aria-label="Mempelai">
+      <svg viewBox="0 0 24 24"><path d="M12 20s-7-4.3-9-8.5C1.5 8 3.5 5 6.7 5c2 0 3.6 1.2 5.3 3.2C13.7 6.2 15.3 5 17.3 5c3.2 0 5.2 3 3.7 6.5C19 15.7 12 20 12 20Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+      <span>Mempelai</span>
+    </a>
+    <a href="#events" class="bottom-nav__item" aria-label="Acara">
+      <svg viewBox="0 0 24 24"><path d="M8 3v3m8-3v3M4 8h16M6 5h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+      <span>Acara</span>
+    </a>
+    <a href="#gallery" class="bottom-nav__item" aria-label="Galeri">
+      <svg viewBox="0 0 24 24"><path d="M5 4h14a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1Zm3 6a2 2 0 1 0 0-4 2 2 0 0 0 0 4Zm-4 8 5-5 3 3 4-4 4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+      <span>Galeri</span>
+    </a>
+    <a href="#rsvp" class="bottom-nav__item" aria-label="RSVP">
+      <svg viewBox="0 0 24 24"><path d="M4 5h16a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H9l-5 4V6a1 1 0 0 1 1-1Zm4 5h8m-8 3h5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span>RSVP</span>
+    </a>
+  </nav>
+
+  <!-- ===== LIGHTBOX ===== -->
+  <div class="lightbox" id="lightbox" hidden aria-modal="true" role="dialog" aria-label="Pratinjau foto">
+    <button class="lightbox__close" id="lightbox-close" type="button" aria-label="Tutup">&times;</button>
+    <button class="lightbox__nav lightbox__nav--prev" id="lightbox-prev" type="button" aria-label="Sebelumnya">&#8249;</button>
+    <img class="lightbox__img" id="lightbox-img" alt="" />
+    <button class="lightbox__nav lightbox__nav--next" id="lightbox-next" type="button" aria-label="Berikutnya">&#8250;</button>
+  </div>
+
+  <!-- Deteksi file:// — browser memblokir ES module lewat protokol ini,
+       jadi tampilkan petunjuk menjalankan server lokal -->
+  <script>
+    if (location.protocol === "file:") {
+      document.documentElement.classList.add("is-file-protocol");
+    }
+  </script>
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
