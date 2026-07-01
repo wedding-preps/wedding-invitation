@@ -45,11 +45,11 @@ jobs:
           test -f config.js
           ls css/*.css js/modules/*.js > /dev/null
 
+      # Prasyarat: aktifkan Pages sekali di Settings → Pages →
+      # Source: "GitHub Actions" (token workflow tidak diizinkan
+      # membuat situs Pages sendiri)
       - name: Konfigurasi Pages
         uses: actions/configure-pages@v5
-        with:
-          # aktifkan GitHub Pages otomatis pada run pertama
-          enablement: true
 
       - name: Unggah artefak situs
         uses: actions/upload-pages-artifact@v3
