@@ -2,16 +2,18 @@
    DESIGN TOKENS — semua warna, font, spasi didefinisikan di sini.
    ============================================================ */
 :root {
-  /* Warna dasar */
-  --emerald: #0f3d2e;
-  --emerald-dark: #0a2c21;
-  --emerald-light: #14503c;
-  --ivory: #faf7f0;
-  --ivory-soft: #f3eee2;
-  --gold: #c9a227;
-  --gold-light: #e0c76a;
-  --gold-soft: rgba(201, 162, 39, 0.35);
-  --sage: #a8bfa5;
+  /* Warna dasar — tema putih-coklat-krem
+     (nama variabel lama dipertahankan agar tidak menyentuh file lain:
+      --emerald* kini berisi coklat, --sage berisi krem-taupe) */
+  --emerald: #5c4433;
+  --emerald-dark: #3e2e23;
+  --emerald-light: #7a5c42;
+  --ivory: #fbf8f2;
+  --ivory-soft: #f3ece1;
+  --gold: #b98a44;
+  --gold-light: #dcbe8a;
+  --gold-soft: rgba(185, 138, 68, 0.35);
+  --sage: #d6c3ac;
 
   /* Ilustrasi */
   --skin: #e8c39e;
@@ -22,12 +24,12 @@
   --bg: var(--ivory);
   --bg-alt: var(--ivory-soft);
   --bg-deep: var(--emerald);
-  --text: #2b2b26;
-  --text-muted: #6f6f65;
+  --text: #3a322b;
+  --text-muted: #7c7266;
   --text-on-deep: var(--ivory);
   --card-bg: #fffdf8;
-  --card-border: rgba(201, 162, 39, 0.28);
-  --shadow: 0 10px 30px rgba(15, 61, 46, 0.1);
+  --card-border: rgba(185, 138, 68, 0.28);
+  --shadow: 0 10px 30px rgba(92, 68, 51, 0.1);
 
   /* Tipografi */
   --font-serif: "Cormorant Garamond", "Times New Roman", serif;
