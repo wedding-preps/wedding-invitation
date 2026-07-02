@@ -376,82 +376,39 @@
   }
 }
 
-/* ============ STORY ============ */
-.story__timeline {
-  position: relative;
-  text-align: left;
+/* ============ STORY (kata pengantar satu paragraf) ============ */
+.story__frame {
+  max-width: 520px;
+  margin: 0 auto;
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(185, 138, 68, 0.08), transparent 60%),
+    var(--card-bg);
 }
 
-.story__timeline::before {
-  content: "";
-  position: absolute;
-  left: 14px;
-  top: 8px;
-  bottom: 8px;
-  width: 1px;
-  background: linear-gradient(var(--gold-soft), var(--gold), var(--gold-soft));
-}
-
-.story-item {
-  position: relative;
-  padding-left: 44px;
-  margin-bottom: var(--space-3);
-}
-
-.story-item__dot {
-  position: absolute;
-  left: 7px;
-  top: 6px;
-  width: 15px;
-  height: 15px;
-  color: var(--gold);
+.story__star {
+  width: 30px;
+  height: 30px;
+  margin: 0 auto var(--space-2);
   fill: none;
-  stroke: currentColor;
-  stroke-width: 1.5;
-  background: var(--bg);
+  stroke-width: 1;
 }
 
-.story-item__year {
+.story__text {
   font-family: var(--font-serif);
   font-style: italic;
+  font-size: clamp(1.05rem, 4vw, 1.2rem);
+  line-height: 2;
+  color: var(--emerald);
+}
+
+.story__text::first-letter {
+  font-size: 1.6em;
   color: var(--gold);
-  font-size: 1.05rem;
 }
 
-.story-item__title {
-  font-size: 1.25rem;
-  margin: 0.1em 0 0.3em;
-}
-
-.story-item__text {
-  color: var(--text-muted);
-  font-size: 0.92rem;
-}
-
-@media (min-width: 700px) {
-  .story__timeline::before {
-    left: 50%;
-  }
-  .story-item {
-    width: 50%;
-    padding-left: 0;
-    padding-right: 40px;
-    text-align: right;
-  }
-  .story-item:nth-child(even) {
-    margin-left: 50%;
-    padding-right: 0;
-    padding-left: 40px;
-    text-align: left;
-  }
-  .story-item__dot {
-    left: auto;
-    right: -8px;
-  }
-  .story-item:nth-child(even) .story-item__dot {
-    right: auto;
-    left: -7px;
-  }
+.story__divider {
+  margin-top: var(--space-3);
+  width: min(160px, 50%);
 }
 
 /* ============ GALLERY ============ */

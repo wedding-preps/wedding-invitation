@@ -148,37 +148,16 @@ function renderEvents() {
   }
 }
 
-/* ---------- Timeline kisah ---------- */
+/* ---------- Kata pengantar (story) ---------- */
 function renderStory() {
-  const timeline = document.getElementById("story-timeline");
-  if (!timeline) return;
-
-  (CONFIG.story || []).forEach((item) => {
-    const el = document.createElement("div");
-    el.className = "story-item";
-    el.setAttribute("data-reveal", "fade");
-
-    const dot = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-    dot.setAttribute("class", "story-item__dot");
-    dot.setAttribute("viewBox", "-12 -12 24 24");
-    dot.setAttribute("aria-hidden", "true");
-    dot.innerHTML = '<use href="#orn-star8" />';
-
-    const year = document.createElement("p");
-    year.className = "story-item__year";
-    year.textContent = item.year;
-
-    const title = document.createElement("h3");
-    title.className = "story-item__title";
-    title.textContent = item.title;
-
-    const text = document.createElement("p");
-    text.className = "story-item__text";
-    text.textContent = item.text;
-
-    el.append(dot, year, title, text);
-    timeline.appendChild(el);
-  });
+  const story = CONFIG.story;
+  if (!story?.title || !story?.text) {
+    // Tanpa konten: sembunyikan seksinya sekalian
+    document.getElementById("story")?.remove();
+    return;
+  }
+  setText("story-title", story.title);
+  setText("story-text", story.text);
 }
 
 /* ---------- Partikel emas melayang ---------- */

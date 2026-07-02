@@ -83,29 +83,11 @@ export const CONFIG = {
     footerThanks: "Terima kasih atas doa dan restunya",
   },
 
-  // ---------- Kisah cinta ----------
-  story: [
-    {
-      year: "2021",
-      title: "Awal Bertemu",
-      text: "Kami dipertemukan dalam sebuah kajian di kampus. Sebuah perkenalan singkat yang ternyata menjadi awal dari segalanya.",
-    },
-    {
-      year: "2023",
-      title: "Saling Mengenal",
-      text: "Melalui perantara keluarga, kami menjalani proses ta'aruf dengan niat yang lurus dan hati yang mantap.",
-    },
-    {
-      year: "2025",
-      title: "Khitbah",
-      text: "Keluarga besar kami bertemu, dan lamaran diterima dengan penuh syukur dan kebahagiaan.",
-    },
-    {
-      year: "2026",
-      title: "Menuju Halal",
-      text: "Dengan izin Allah, kami melangkah menuju ikatan suci pernikahan. Mohon doa restu untuk perjalanan kami.",
-    },
-  ],
+  // ---------- Kisah / kata pengantar ----------
+  story: {
+    title: "Bismillah Menuju Ibadah Terpanjang",
+    text: "Tiada yang kebetulan dalam setiap pertemuan. Atas izin Allah SWT, doa-doa yang dipanjatkan, ikhtiar yang dijalankan, serta restu kedua keluarga mengantarkan kami pada hari yang penuh syukur ini. Dengan rendah hati, kami memohon doa agar langkah kecil kami menjadi awal keluarga yang sakinah, mawaddah, wa rahmah.",
+  },
 
   // // ---------- Galeri (ganti dengan foto asli, rasio bebas) ----------
   // gallery: [

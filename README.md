@@ -36,7 +36,7 @@ Yang paling sering diubah:
 | Tanggal akad (countdown & kalender) | `weddingDate`, `weddingDateEnd`, `dateDisplay` |
 | Akad & resepsi | `events[]` |
 | Peta | `mapEmbedUrl` (Google Maps → Share → *Embed a map* → salin nilai `src` iframe) |
-| Kisah cinta | `story[]` |
+| Kata pengantar (satu paragraf) | `story.title`, `story.text` |
 | Foto galeri | `gallery[]` — ganti URL placehold.co dengan foto asli |
 | Rekening amplop digital | `gifts[]` |
 | Musik | `music.src` |
