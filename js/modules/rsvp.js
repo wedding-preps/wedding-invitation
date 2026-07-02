@@ -133,7 +133,7 @@ export function init(config) {
     form.reset();
 
     // Segarkan dari backend agar daftar sinkron dengan sheet
-    if (endpoint) setTimeout(loadRemote, 30000);
+    if (endpoint) setTimeout(loadRemote, 60000);
 
     if (status) {
       status.textContent = "Terima kasih, ucapan Anda telah terkirim ✦";
