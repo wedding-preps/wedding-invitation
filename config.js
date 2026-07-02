@@ -102,13 +102,13 @@ export const CONFIG = {
   // ---------- Amplop digital ----------
   gifts: [
     {
-      bank: "Bank BCA",
-      accountNumber: "1234567890",
+      bank: "Bank BSI",
+      accountNumber: "7180688298",
       accountName: "Inas Rasyidah",
     },
     {
       bank: "Bank Mandiri",
-      accountNumber: "0987654321",
+      accountNumber: "1440028022769",
       accountName: "Achmad Naufal Romiz",
     },
   ],
