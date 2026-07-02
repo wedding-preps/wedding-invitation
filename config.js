@@ -38,26 +38,26 @@ export const CONFIG = {
   events: [
     {
       name: "Akad Nikah",
-      date: "Sabtu, 14 November 2026",
+      date: "Ahad, 9 Agustus 2026",
       time: "08.00 – 10.00 WIB",
-      venue: "Masjid Agung Al-Azhar",
-      address: "Jl. Sisingamangaraja, Kebayoran Baru, Jakarta Selatan",
-      mapsLink: "https://maps.google.com/?q=Masjid+Agung+Al-Azhar+Jakarta",
+      venue: "Bebek Kerto Tunggulwulung",
+      address: "Jl. Saxophone, Tunggulwulung, Kec. Lowokwaru, Kota Malang",
+      mapsLink: "https://maps.app.goo.gl/rzCWErkp5FrxssyT8",
     },
     {
       name: "Resepsi",
-      date: "Sabtu, 14 November 2026",
+      date: "Ahad, 9 Agustus 2026",
       time: "11.00 – 14.00 WIB",
       venue: "Balai Kartini",
-      address: "Jl. Gatot Subroto Kav. 37, Jakarta Selatan",
-      mapsLink: "https://maps.google.com/?q=Balai+Kartini+Jakarta",
+      address: "Jl. Saxophone, Tunggulwulung, Kec. Lowokwaru, Kota Malang",
+      mapsLink: "https://maps.app.goo.gl/rzCWErkp5FrxssyT8",
     },
   ],
 
   // Embed Google Maps (ganti dengan embed URL lokasi asli:
   // Google Maps → Share → Embed a map → salin src iframe)
   mapEmbedUrl:
-    "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.2273570519246!2d106.79763107499058!3d-6.243482093744423!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f1720b2f9847%3A0x7972b16b2d305d10!2sAl-Azhar%20Great%20Mosque!5e0!3m2!1sen!2sid!4v1700000000000!5m2!1sen!2sid",
+    "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3951.729004082412!2d112.60020467700875!3d-7.923348692100324!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e78835b8c7383b5%3A0x921442d6296f0f7b!2sBebek%20Kerto%20tunggulwulung!5e0!3m2!1sen!2sid!4v1782954311421!5m2!1sen!2sid",
 
   // ---------- Ayat ----------
   verse: {
