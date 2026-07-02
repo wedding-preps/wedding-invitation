@@ -18,9 +18,9 @@ export const CONFIG = {
       image: "assets/img/bride.png",
     },
     groom: {
-      fullName: "Ahmad Naufal Romiz",
+      fullName: "Ahmad Naufal R",
       nickName: "Naufal",
-      parents: "Putra dari Bpk. Ach. Sjamsul Djihat & Ibu Umi Kulsum",
+      parents: "Putra dari Bpk. Ach. Sjamsul & Ibu Umi Kulsum",
       instagram: "",
       image: "assets/img/groom.png",
     },
@@ -48,7 +48,7 @@ export const CONFIG = {
       name: "Resepsi",
       date: "Ahad, 9 Agustus 2026",
       time: "11.00 – 14.00 WIB",
-      venue: "Balai Kartini",
+      venue: "Bebek Kerto Tunggulwulung",
       address: "Jl. Saxophone, Tunggulwulung, Kec. Lowokwaru, Kota Malang",
       mapsLink: "https://maps.app.goo.gl/rzCWErkp5FrxssyT8",
     },
@@ -115,7 +115,7 @@ export const CONFIG = {
   giftAddress: {
     label: "Kirim Kado",
     recipient: "Ahmad Naufal Romiz",
-    address: "Perumahan Griya Jemani",
+    address: "Perumahan Griya Jemani, No. A20 (paling pojok sebelah musholla), Desa Pendem, Kec. Junrejo, Kota Batu - 65324",
   },
 
   // ---------- Musik ----------
