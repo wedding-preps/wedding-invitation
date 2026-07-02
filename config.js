@@ -126,7 +126,7 @@ export const CONFIG = {
   //   di assets/audio/. src juga dipakai sebagai cadangan otomatis bila
   //   YouTube gagal dimuat (offline / embed diblokir).
   music: {
-    youtubeId: "4P2OpaVzxvA",
+    youtubeId: "P4L6m40QCnw",
     src: "assets/audio/music.wav",
     autoplayAfterOpen: true,
   },
