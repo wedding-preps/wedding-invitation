@@ -39,7 +39,7 @@ export const CONFIG = {
     {
       name: "Akad Nikah",
       date: "Ahad, 9 Agustus 2026",
-      time: "08.00 – 10.00 WIB",
+      // time: "08.00 – 10.00 WIB",
       venue: "Bebek Kerto Tunggulwulung",
       address: "Jl. Saxophone, Tunggulwulung, Kec. Lowokwaru, Kota Malang",
       mapsLink: "https://maps.app.goo.gl/rzCWErkp5FrxssyT8",
@@ -47,7 +47,7 @@ export const CONFIG = {
     {
       name: "Resepsi",
       date: "Ahad, 9 Agustus 2026",
-      time: "11.00 – 14.00 WIB",
+      time: "09.00 – 12.00 WIB",
       venue: "Bebek Kerto Tunggulwulung",
       address: "Jl. Saxophone, Tunggulwulung, Kec. Lowokwaru, Kota Malang",
       mapsLink: "https://maps.app.goo.gl/rzCWErkp5FrxssyT8",
