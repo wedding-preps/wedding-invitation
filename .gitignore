@@ -1,0 +1,34 @@
+# ===== Sistem operasi =====
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ===== Editor / IDE =====
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# ===== Tooling AI lokal (sesi/asisten, bukan bagian situs) =====
+.agents/
+.codex/
+.claude/
+
+# ===== Node (situs ini tanpa npm; jaga-jaga bila ada tooling lokal) =====
+node_modules/
+package-lock.json
+
+# ===== Artefak deploy lokal =====
+.vercel/
+
+# ===== Berkas sementara / log =====
+*.log
+*.tmp
+*.bak
+.cache/
+
+# Catatan: assets/print/ (desain undangan cetak) sengaja TIDAK di-ignore
+# agar sumber desainnya ikut terversi. Bila tidak ingin ikut ter-deploy
+# ke GitHub Pages, hapus komentar baris berikut:
+# assets/print/
