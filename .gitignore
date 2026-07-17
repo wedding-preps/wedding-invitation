@@ -32,3 +32,4 @@ package-lock.json
 # agar sumber desainnya ikut terversi. Bila tidak ingin ikut ter-deploy
 # ke GitHub Pages, hapus komentar baris berikut:
 assets/print/
+*.csv
