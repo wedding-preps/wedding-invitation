@@ -31,4 +31,4 @@ package-lock.json
 # Catatan: assets/print/ (desain undangan cetak) sengaja TIDAK di-ignore
 # agar sumber desainnya ikut terversi. Bila tidak ingin ikut ter-deploy
 # ke GitHub Pages, hapus komentar baris berikut:
-# assets/print/
+assets/print/
