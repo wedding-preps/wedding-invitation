@@ -11,6 +11,7 @@ import * as reveal from "./modules/reveal.js";
 import * as rsvp from "./modules/rsvp.js";
 import * as gallery from "./modules/gallery.js";
 import * as clipboard from "./modules/clipboard.js";
+import * as butterflies from "./modules/butterflies.js";
 
 const setText = (id, value) => {
   const el = document.getElementById(id);
@@ -25,6 +26,8 @@ function bindContent() {
   document.title = `Undangan Pernikahan ${coupleNames}`;
 
   // Cover
+  setText("cover-groom-initial", (groom.nickName || groom.fullName).trim().charAt(0).toUpperCase());
+  setText("cover-bride-initial", (bride.nickName || bride.fullName).trim().charAt(0).toUpperCase());
   setText("cover-eyebrow", CONFIG.text.coverEyebrow);
   setText("cover-names", coupleNames);
   setText("cover-date", CONFIG.dateDisplay);
@@ -234,19 +237,14 @@ document.addEventListener("DOMContentLoaded", () => {
   renderEvents();
   renderStory();
 
-  guest.init(CONFIG);
-  opening.init(CONFIG);
-  countdown.init(CONFIG);
-  rsvp.init(CONFIG);
-  gallery.init(CONFIG);
-  clipboard.init(CONFIG);
-  initNav();
-
-  // Reveal & partikel baru berjalan setelah undangan dibuka,
+  // Reveal, partikel & kupu-kupu baru berjalan setelah undangan dibuka,
   // agar animasi hero terlihat oleh tamu (bukan di balik cover).
+  // Listener HARUS terpasang sebelum opening.init() — hook ?open memicu
+  // event "invitation:opened" langsung saat init.
   const startVisuals = () => {
     reveal.init();
     initParticles();
+    butterflies.init();
   };
 
   if (document.getElementById("cover")) {
@@ -254,4 +252,12 @@ document.addEventListener("DOMContentLoaded", () => {
   } else {
     startVisuals();
   }
+
+  guest.init(CONFIG);
+  opening.init(CONFIG);
+  countdown.init(CONFIG);
+  rsvp.init(CONFIG);
+  gallery.init(CONFIG);
+  clipboard.init(CONFIG);
+  initNav();
 });
