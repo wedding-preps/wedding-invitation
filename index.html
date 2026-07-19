@@ -14,11 +14,11 @@
     rel="stylesheet"
   />
 
-  <link rel="stylesheet" href="css/variables.css" />
-  <link rel="stylesheet" href="css/base.css" />
-  <link rel="stylesheet" href="css/components.css" />
-  <link rel="stylesheet" href="css/sections.css" />
-  <link rel="stylesheet" href="css/animations.css" />
+  <link rel="stylesheet" href="css/variables.css?v=20260719b" />
+  <link rel="stylesheet" href="css/base.css?v=20260719b" />
+  <link rel="stylesheet" href="css/components.css?v=20260719b" />
+  <link rel="stylesheet" href="css/sections.css?v=20260719b" />
+  <link rel="stylesheet" href="css/animations.css?v=20260719b" />
 </head>
 <body class="is-locked">
 
@@ -56,6 +56,19 @@
       <symbol id="orn-leaf" viewBox="0 0 24 24">
         <path d="M12 2 Q20 8 18 16 Q16 22 12 22 Q8 22 6 16 Q4 8 12 2 Z M12 5 V19" fill="none" stroke-width="1.2" />
       </symbol>
+      <!-- Butterfly wing, tampak atas (satu sisi; sisi lain dicerminkan via CSS).
+           Warna diatur lewat CSS var: --b-wing / --b-accent / --b-accent2 -->
+      <symbol id="orn-butterfly-wing" viewBox="0 0 60 90">
+        <!-- Sayap depan -->
+        <path d="M3 36 C 7 14, 26 2, 43 5 C 55 8, 58 19, 51 28 C 41 39, 19 42, 3 40 Z" fill="var(--b-wing, #2b2015)" />
+        <path d="M34 7 C 45 7, 54 14, 50 24 C 46 31, 38 35, 29 37 C 35 27, 35 16, 34 7 Z" fill="var(--b-accent, #e2762a)" opacity="0.92" />
+        <!-- Sayap belakang -->
+        <path d="M3 44 C 17 42, 33 48, 38 60 C 42 72, 32 82, 21 78 C 9 73, 3 60, 3 46 Z" fill="var(--b-wing, #2b2015)" />
+        <path d="M12 50 C 22 49, 31 55, 33 63 C 34 70, 28 74, 21 71 C 13 67, 11 58, 12 50 Z" fill="var(--b-accent2, #e8c02f)" opacity="0.95" />
+        <!-- Bintik putih ujung sayap -->
+        <circle cx="47" cy="12" r="1.7" fill="#fff" opacity="0.85" />
+        <circle cx="52" cy="18" r="1.3" fill="#fff" opacity="0.85" />
+      </symbol>
     </defs>
   </svg>
 
@@ -63,35 +76,57 @@
        COVER / OPENING
   ============================================================ -->
   <div class="cover" id="cover" role="dialog" aria-modal="true" aria-label="Sampul undangan">
-    <div class="cover__panel">
-      <svg class="cover__corner cover__corner--tl orn-gold" aria-hidden="true"><use href="#orn-corner" /></svg>
-      <svg class="cover__corner cover__corner--tr orn-gold" aria-hidden="true"><use href="#orn-corner" /></svg>
-      <svg class="cover__corner cover__corner--bl orn-gold" aria-hidden="true"><use href="#orn-corner" /></svg>
-      <svg class="cover__corner cover__corner--br orn-gold" aria-hidden="true"><use href="#orn-corner" /></svg>
+    <div class="cover__canvas">
+      <img
+        class="cover__botanical"
+        src="assets/svg/cover-botanical-frame.svg?v=20260719b"
+        alt=""
+        aria-hidden="true"
+      />
 
-      <p class="cover__eyebrow" id="cover-eyebrow"></p>
-      <svg class="cover__star orn-gold" aria-hidden="true"><use href="#orn-star8" /></svg>
-      <h1 class="cover__names" id="cover-names"></h1>
-      <p class="cover__date" id="cover-date"></p>
-
-      <div class="cover__guest">
-        <p class="cover__guest-label" id="cover-guest-label"></p>
-        <p class="cover__guest-name" id="guest-name"></p>
+      <div class="cover-butterfly" aria-hidden="true">
+        <div class="butterfly__inner">
+          <div class="butterfly__wing butterfly__wing--left">
+            <svg viewBox="0 0 60 90"><use href="#orn-butterfly-wing" /></svg>
+          </div>
+          <div class="butterfly__wing butterfly__wing--right">
+            <svg viewBox="0 0 60 90"><use href="#orn-butterfly-wing" /></svg>
+          </div>
+          <div class="butterfly__body"></div>
+        </div>
       </div>
 
-      <p class="cover__file-warning">
-        Halaman ini dibuka langsung dari file lokal, sehingga browser memblokir
-        sebagian skrip. Jalankan <code>python3 -m http.server</code> di folder
-        proyek lalu buka <code>http://localhost:8000</code>, atau deploy ke
-        hosting statis (lihat README.md).
-      </p>
+      <div class="cover__panel">
+        <div class="cover__monogram" aria-hidden="true">
+          <span id="cover-groom-initial"></span>
+          <i></i>
+          <span id="cover-bride-initial"></span>
+        </div>
 
-      <button class="btn btn--gold cover__open" id="btn-open" type="button">
-        <svg class="btn__icon" viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M3 8l9 6 9-6M4 6h16a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-        <span id="cover-button-text"></span>
-      </button>
+        <p class="cover__eyebrow" id="cover-eyebrow"></p>
+        <svg class="cover__star orn-gold" aria-hidden="true"><use href="#orn-star8" /></svg>
+        <h1 class="cover__names" id="cover-names"></h1>
+        <p class="cover__date" id="cover-date"></p>
+
+        <div class="cover__guest">
+          <p class="cover__guest-label" id="cover-guest-label"></p>
+          <p class="cover__guest-name" id="guest-name"></p>
+        </div>
+
+        <p class="cover__file-warning">
+          Halaman ini dibuka langsung dari file lokal, sehingga browser memblokir
+          sebagian skrip. Jalankan <code>python3 -m http.server</code> di folder
+          proyek lalu buka <code>http://localhost:8000</code>, atau deploy ke
+          hosting statis (lihat README.md).
+        </p>
+
+        <button class="btn btn--gold cover__open" id="btn-open" type="button">
+          <svg class="btn__icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M3 8l9 6 9-6M4 6h16a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span id="cover-button-text"></span>
+        </button>
+      </div>
     </div>
   </div>
 
@@ -106,6 +141,9 @@
 
   <!-- Particles layer -->
   <div class="particles" id="particles" aria-hidden="true"></div>
+
+  <!-- Butterflies layer -->
+  <div class="butterflies" id="butterflies" aria-hidden="true"></div>
 
   <main id="content">
 
@@ -337,6 +375,6 @@
       document.documentElement.classList.add("is-file-protocol");
     }
   </script>
-  <script type="module" src="js/main.js"></script>
+  <script type="module" src="js/main.js?v=20260719b"></script>
 </body>
 </html>

@@ -1,0 +1,197 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 430 932" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <pattern id="paper-lines" width="12" height="9" patternUnits="userSpaceOnUse">
+      <path d="M0 2.5H12M0 7H12" stroke="#fbf8f2" stroke-width=".45" opacity=".08"/>
+    </pattern>
+
+    <g id="leaf">
+      <path d="M0 0C7-13 17-14 25-7C19 2 10 6 0 0Z" fill="#d6c3ac"/>
+      <path d="M2-1C9-5 15-7 22-7" fill="none" stroke="#7a5c42" stroke-width="1"/>
+    </g>
+
+    <g id="leaf-dark">
+      <path d="M0 0C6-12 16-14 23-8C18 1 9 5 0 0Z" fill="#8e745d"/>
+      <path d="M2-1C8-5 14-7 20-7" fill="none" stroke="#5c4433" stroke-width=".9"/>
+    </g>
+
+    <g id="daisy">
+      <g fill="#fbf8f2" stroke="#d8c7ad" stroke-width=".6">
+        <ellipse ry="14" rx="6" transform="rotate(0) translate(0 -12)"/>
+        <ellipse ry="14" rx="6" transform="rotate(45) translate(0 -12)"/>
+        <ellipse ry="14" rx="6" transform="rotate(90) translate(0 -12)"/>
+        <ellipse ry="14" rx="6" transform="rotate(135) translate(0 -12)"/>
+      </g>
+      <circle r="7.5" fill="#c79a50"/>
+      <circle r="3" fill="#8e623a"/>
+    </g>
+
+    <g id="blossom">
+      <g fill="#eadfc8" stroke="#cdb797" stroke-width=".55">
+        <circle cx="0" cy="-7" r="8"/>
+        <circle cx="6.7" cy="-2.2" r="8"/>
+        <circle cx="4.1" cy="5.8" r="8"/>
+        <circle cx="-4.1" cy="5.8" r="8"/>
+        <circle cx="-6.7" cy="-2.2" r="8"/>
+      </g>
+      <circle r="5" fill="#b98a44"/>
+    </g>
+
+    <g id="blush-flower">
+      <g fill="#d6a48b" stroke="#b98166" stroke-width=".6">
+        <ellipse cx="0" cy="-9" rx="8" ry="11"/>
+        <ellipse cx="8.6" cy="-2.5" rx="8" ry="11" transform="rotate(72 8.6 -2.5)"/>
+        <ellipse cx="5.2" cy="7.5" rx="8" ry="11" transform="rotate(144 5.2 7.5)"/>
+        <ellipse cx="-5.2" cy="7.5" rx="8" ry="11" transform="rotate(216 -5.2 7.5)"/>
+        <ellipse cx="-8.6" cy="-2.5" rx="8" ry="11" transform="rotate(288 -8.6 -2.5)"/>
+      </g>
+      <circle r="5.5" fill="#e8c787"/>
+    </g>
+
+    <g id="tiny-flower">
+      <circle cy="-4.5" r="4.5" fill="#fbf8f2"/>
+      <circle cx="4.2" cy="1.4" r="4.5" fill="#fbf8f2"/>
+      <circle cx="-4.2" cy="1.4" r="4.5" fill="#fbf8f2"/>
+      <circle r="2.6" fill="#b98a44"/>
+    </g>
+
+    <g id="gold-flower">
+      <path d="M0 0C-12-8-10-22 1-21C12-22 15-9 5-2C16-7 26 2 20 12C15 21 4 15 1 6C1 18-11 23-18 14C-24 5-14-5-4-3Z"
+            fill="#d5aa5d" stroke="#a97838" stroke-width="1"/>
+      <circle r="4.5" fill="#6f4e33"/>
+    </g>
+
+    <g id="hydrangea">
+      <g fill="#f7f0e5" stroke="#ccb99f" stroke-width=".45">
+        <circle cx="-15" cy="-5" r="10"/>
+        <circle cx="-7" cy="-17" r="10"/>
+        <circle cx="7" cy="-17" r="10"/>
+        <circle cx="16" cy="-5" r="10"/>
+        <circle cx="10" cy="10" r="10"/>
+        <circle cx="-7" cy="12" r="10"/>
+        <circle cx="0" cy="-2" r="11"/>
+      </g>
+      <g fill="#b98a44">
+        <circle cx="-15" cy="-5" r="1.8"/><circle cx="-7" cy="-17" r="1.8"/>
+        <circle cx="7" cy="-17" r="1.8"/><circle cx="16" cy="-5" r="1.8"/>
+        <circle cx="10" cy="10" r="1.8"/><circle cx="-7" cy="12" r="1.8"/>
+        <circle cy="-2" r="2"/>
+      </g>
+    </g>
+  </defs>
+
+  <rect width="430" height="932" fill="#4a3528"/>
+  <rect width="430" height="932" fill="url(#paper-lines)"/>
+
+  <!-- Central mihrab-inspired frame -->
+  <path d="M28 787V257C28 207 69 183 122 171C170 161 198 137 215 104C232 137 260 161 308 171C361 183 402 207 402 257V787"
+        fill="none" stroke="#fbf8f2" stroke-width="4.5" opacity=".9"/>
+  <path d="M39 787V264C39 221 76 196 127 184C173 174 199 153 215 126C231 153 257 174 303 184C354 196 391 221 391 264V787"
+        fill="none" stroke="#dcbe8a" stroke-width="1.15" opacity=".85"/>
+
+  <!-- Quiet line-art garden behind the wording -->
+  <g fill="none" stroke="#f3ece1" stroke-width="1" opacity=".095">
+    <path d="M82 681V520M348 681V520M82 548Q215 440 348 548"/>
+    <path d="M114 681V566M316 681V566M114 584Q215 500 316 584"/>
+    <path d="M146 681V603M284 681V603M146 615Q215 555 284 615"/>
+    <path d="M59 690H371M72 706H358"/>
+    <path d="M145 690V647H285V690M172 647V612H258V647M191 612V579H239V612"/>
+    <path d="M215 579V531M202 548H228"/>
+    <path d="M102 674C131 634 166 621 215 621C264 621 299 634 328 674"/>
+  </g>
+
+  <!-- Top branches -->
+  <g stroke="#d6c3ac" stroke-width="2" fill="none" stroke-linecap="round">
+    <path d="M-12 26C53 51 78 99 91 174"/>
+    <path d="M12 0C64 33 99 64 126 130"/>
+    <path d="M442 26C377 51 352 99 339 174"/>
+    <path d="M418 0C366 33 331 64 304 130"/>
+  </g>
+  <g>
+    <use href="#leaf" transform="translate(18 37) rotate(12) scale(1.25)"/>
+    <use href="#leaf-dark" transform="translate(39 56) rotate(42)"/>
+    <use href="#leaf" transform="translate(61 83) rotate(72) scale(.9)"/>
+    <use href="#leaf-dark" transform="translate(79 120) rotate(91) scale(1.1)"/>
+    <use href="#leaf" transform="translate(24 18) rotate(35)"/>
+    <use href="#leaf-dark" transform="translate(91 67) rotate(63)"/>
+    <use href="#leaf" transform="translate(412 37) rotate(168) scale(-1.25 1.25)"/>
+    <use href="#leaf-dark" transform="translate(391 56) rotate(138) scale(-1 1)"/>
+    <use href="#leaf" transform="translate(369 83) rotate(108) scale(-.9 .9)"/>
+    <use href="#leaf-dark" transform="translate(351 120) rotate(89) scale(-1.1 1.1)"/>
+    <use href="#leaf" transform="translate(406 18) rotate(145) scale(-1 1)"/>
+    <use href="#leaf-dark" transform="translate(339 67) rotate(117) scale(-1 1)"/>
+  </g>
+  <g>
+    <use href="#hydrangea" transform="translate(52 40) scale(.95)"/>
+    <use href="#daisy" transform="translate(81 92) scale(.82)"/>
+    <use href="#gold-flower" transform="translate(31 105) scale(.7)"/>
+    <use href="#blush-flower" transform="translate(104 44) scale(.65)"/>
+    <use href="#tiny-flower" transform="translate(117 116) scale(.8)"/>
+    <use href="#hydrangea" transform="translate(378 40) scale(.95)"/>
+    <use href="#daisy" transform="translate(349 92) scale(.82)"/>
+    <use href="#gold-flower" transform="translate(399 105) scale(.7)"/>
+    <use href="#blush-flower" transform="translate(326 44) scale(.65)"/>
+    <use href="#tiny-flower" transform="translate(313 116) scale(.8)"/>
+  </g>
+
+  <!-- Side sprigs -->
+  <g fill="none" stroke="#d6c3ac" stroke-width="1.6">
+    <path d="M31 244C7 304 10 386 34 452"/>
+    <path d="M399 244C423 304 420 386 396 452"/>
+  </g>
+  <g>
+    <use href="#leaf" transform="translate(23 278) rotate(106) scale(.72)"/>
+    <use href="#leaf-dark" transform="translate(20 331) rotate(78) scale(.65)"/>
+    <use href="#tiny-flower" transform="translate(29 374) scale(.65)"/>
+    <use href="#leaf" transform="translate(407 278) rotate(74) scale(-.72 .72)"/>
+    <use href="#leaf-dark" transform="translate(410 331) rotate(102) scale(-.65 .65)"/>
+    <use href="#tiny-flower" transform="translate(401 374) scale(.65)"/>
+  </g>
+
+  <!-- Lower branches -->
+  <g fill="none" stroke="#9c826a" stroke-width="2.2" stroke-linecap="round">
+    <path d="M-10 900C72 833 115 781 139 697"/>
+    <path d="M28 938C82 859 142 815 190 754"/>
+    <path d="M440 900C358 833 315 781 291 697"/>
+    <path d="M402 938C348 859 288 815 240 754"/>
+  </g>
+  <g>
+    <use href="#leaf" transform="translate(28 880) rotate(-54) scale(1.35)"/>
+    <use href="#leaf-dark" transform="translate(58 841) rotate(-44) scale(1.2)"/>
+    <use href="#leaf" transform="translate(91 803) rotate(-63)"/>
+    <use href="#leaf-dark" transform="translate(115 752) rotate(-78) scale(.9)"/>
+    <use href="#leaf" transform="translate(402 880) rotate(234) scale(-1.35 1.35)"/>
+    <use href="#leaf-dark" transform="translate(372 841) rotate(224) scale(-1.2 1.2)"/>
+    <use href="#leaf" transform="translate(339 803) rotate(243) scale(-1 1)"/>
+    <use href="#leaf-dark" transform="translate(315 752) rotate(258) scale(-.9 .9)"/>
+  </g>
+
+  <!-- Bottom floral bed -->
+  <path d="M0 789C38 760 78 785 110 774C151 760 174 785 215 780C256 785 279 760 320 774C352 785 392 760 430 789V932H0Z"
+        fill="#eadfc8" opacity=".96"/>
+  <g fill="none" stroke="#bca489" stroke-width="1.3">
+    <path d="M29 932C39 868 65 828 91 798"/>
+    <path d="M87 932C98 866 125 826 145 790"/>
+    <path d="M147 932C154 862 178 824 195 779"/>
+    <path d="M401 932C391 868 365 828 339 798"/>
+    <path d="M343 932C332 866 305 826 285 790"/>
+    <path d="M283 932C276 862 252 824 235 779"/>
+  </g>
+  <g>
+    <use href="#hydrangea" transform="translate(26 830) scale(1.05)"/>
+    <use href="#daisy" transform="translate(78 854) scale(1.1)"/>
+    <use href="#gold-flower" transform="translate(118 814) scale(.86)"/>
+    <use href="#blush-flower" transform="translate(151 868) scale(1.05)"/>
+    <use href="#blossom" transform="translate(195 823) scale(1.15)"/>
+    <use href="#daisy" transform="translate(221 886) scale(.95)"/>
+    <use href="#gold-flower" transform="translate(267 831) scale(.82)"/>
+    <use href="#hydrangea" transform="translate(306 875) scale(1.05)"/>
+    <use href="#blush-flower" transform="translate(355 822) scale(.92)"/>
+    <use href="#daisy" transform="translate(401 866) scale(1.08)"/>
+    <use href="#tiny-flower" transform="translate(50 904) scale(1.1)"/>
+    <use href="#tiny-flower" transform="translate(102 892) scale(.9)"/>
+    <use href="#tiny-flower" transform="translate(175 914) scale(1.1)"/>
+    <use href="#tiny-flower" transform="translate(250 911) scale(.9)"/>
+    <use href="#tiny-flower" transform="translate(377 906) scale(1.1)"/>
+  </g>
+
+</svg>
